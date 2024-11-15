@@ -11,4 +11,5 @@ class APIService
     const PLATFORM = '&platform=common-gen5';
     const MATCHTYPE_LEAGUE = '&matchType=leagueMatch';
     const MATCHTYPE_PLAYOFF = '&matchType=playoffMatch';
+    const LAST = '&maxResultCount=1';
 }

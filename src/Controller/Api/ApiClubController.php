@@ -10,9 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ApiClubController extends AbstractController
 {
-    public function __construct(private ClubService $clubService,)
-    {
-    }
+    public function __construct(private ClubService $clubService,) {}
 
     #[Route('club/info/{clubId}', name: 'a_p_i_club')]
     public function getInfoClub($clubId): JsonResponse
@@ -20,6 +18,8 @@ class ApiClubController extends AbstractController
         $clubInfo = $this->clubService->getClubInfo($clubId);
         $clubsStats = $this->clubService->getStats($clubId);
         $clubInfo['stats'] = $clubsStats;
+        $clubInfo['stats']['lastMatchPlayoff'] = $this->clubService->getLastMatchPlayoff($clubId);
+        $clubInfo['stats']['lastMatchLeague'] = $this->clubService->getLastMatchLeague($clubId);
         return $this->json($clubInfo);
     }
 
